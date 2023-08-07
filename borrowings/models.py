@@ -1,12 +1,17 @@
+from django.conf import settings
 from django.db import models
 
+from book.models import Book
 
-class Borrowings(models.Model):
+
+class Borrowing(models.Model):
     borrow_date = models.DateTimeField()
     expected_return_date = models.DateTimeField()
     actual_return_date = models.DateTimeField(blank=True)
-    book_id = models.IntegerField(help_text="id of borrowed book")
-    user_id = models.IntegerField(help_text="user's id, borrowed book")
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE
+    )
 
     class Meta:
         constraints = [
