@@ -31,7 +31,7 @@ class BorrowingSerializer(serializers.ModelSerializer):
         return borrowing
 
 
-class BorrowingDetailSerializer(serializers.ModelSerializer):
+class BorrowingDetailSerializer(BorrowingSerializer):
     book = BookSerializer(read_only=True)
 
     class Meta:
