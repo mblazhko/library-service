@@ -47,7 +47,7 @@ class BorrowingViewSet(
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    @action(detail=True, methods=["post"])
+    @action(detail=True, methods=["GET"], url_path="return-borrowing")
     def return_borrowing(self, request, pk=None):
         borrowing = self.get_object()
 
@@ -58,6 +58,7 @@ class BorrowingViewSet(
             )
 
         borrowing.actual_return_date = timezone.now()
+        borrowing.is_active = False
         borrowing.save()
 
         book = borrowing.book
