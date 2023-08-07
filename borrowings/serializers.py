@@ -14,6 +14,13 @@ class BorrowingSerializer(serializers.ModelSerializer):
             "book",
         )
 
+    def validate_book(self, value):
+        if value.inventory <= 0:
+            raise serializers.ValidationError(
+                "Book is not available for borrowing."
+            )
+        return value
+
 
 class BorrowingDetailSerializer(serializers.ModelSerializer):
     book = BookSerializer(read_only=True)
