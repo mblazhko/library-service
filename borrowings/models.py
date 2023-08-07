@@ -7,7 +7,7 @@ from book.models import Book
 class Borrowing(models.Model):
     borrow_date = models.DateTimeField()
     expected_return_date = models.DateTimeField()
-    actual_return_date = models.DateTimeField(blank=True)
+    actual_return_date = models.DateTimeField(blank=True, null=True)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE
@@ -40,3 +40,9 @@ class Borrowing(models.Model):
                 name="actual_return_date_gte_borrow_date",
             ),
         ]
+
+    @property
+    def is_active(self):
+        if self.actual_return_date is None:
+            return True
+        return False
