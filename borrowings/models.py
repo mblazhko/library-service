@@ -12,6 +12,7 @@ class Borrowing(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE
     )
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         constraints = [
@@ -40,9 +41,3 @@ class Borrowing(models.Model):
                 name="actual_return_date_gte_borrow_date",
             ),
         ]
-
-    @property
-    def is_active(self):
-        if self.actual_return_date is None:
-            return True
-        return False
