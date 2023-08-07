@@ -1,14 +1,22 @@
-from rest_framework import generics, mixins
+from rest_framework import mixins, viewsets
 
 from borrowings.models import Borrowing
-from borrowings.serializers import BorrowingDetailSerializer
+from borrowings.serializers import (
+    BorrowingSerializer,
+    BorrowingDetailSerializer,
+)
 
 
 class BorrowingViewSet(
-    generics.GenericAPIView,
+    viewsets.GenericViewSet,
     mixins.ListModelMixin,
     mixins.RetrieveModelMixin,
     mixins.CreateModelMixin,
 ):
     queryset = Borrowing.objects.all()
-    serializer_class = BorrowingDetailSerializer
+    serializer_class = BorrowingSerializer
+
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return BorrowingDetailSerializer
+        return BorrowingSerializer
