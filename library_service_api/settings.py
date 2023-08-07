@@ -134,3 +134,6 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     )
 }
+
+TELEGRAM_BOT_TOKEN = "6689132895:AAED-IlHwR8oz8eU2053OVo0qfhZYC1ROcw"
+TELEGRAM_CHAT_ID = "-1001923190965"
