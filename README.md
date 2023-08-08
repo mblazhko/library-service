@@ -19,8 +19,19 @@ The online management system for book borrowings.
 ## Endpoints
 
 1. Book API endpoints
+   - book/
+   - book/{id}
 2. User API endpoints
+   - me/
+   - token/
+   - token/refresh
+   - ./ 
 3. Borrowing API endpoints
+   - borrowings/
+   - borrowings/{id}
+   - borrowings/return
+4. Swagger 
+   - schema/swagger/
 
 Also added notification via telegram.
 
