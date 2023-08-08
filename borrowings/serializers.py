@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from rest_framework import serializers
 
 from book.serializers import BookSerializer
@@ -31,7 +33,8 @@ class BorrowingSerializer(serializers.ModelSerializer):
 
         message = (
             f"New borrowing created:\nBook: {borrowing.book.title}\n"
-            f"Expected Return Date: {borrowing.expected_return_date}\n"
+            "Expected Return Date: "
+            f"{borrowing.expected_return_date.strftime('%Y-%m-%d, %H:%M')}\n"
             f"Book in inventory: {borrowing.book.inventory}"
         )
         send_telegram_notification(message)
