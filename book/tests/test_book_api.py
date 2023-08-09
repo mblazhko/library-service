@@ -12,7 +12,7 @@ from book.serializers import BookSerializer
 BOOK_URL = reverse("book:book-list")
 
 
-class UnauthenticatedFlightApiTests(TestCase):
+class UnauthenticatedBookApiTests(TestCase):
     def setUp(self):
         self.client = APIClient()
 
