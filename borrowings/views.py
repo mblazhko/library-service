@@ -49,6 +49,7 @@ class BorrowingViewSet(
 
     @action(detail=True, methods=["GET"], url_path="return")
     def return_borrowing(self, request, pk=None):
+        """Action made to return borrowing"""
         borrowing = self.get_object()
 
         if not borrowing.is_active:
